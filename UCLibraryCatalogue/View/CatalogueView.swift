@@ -9,17 +9,18 @@ import SwiftUI
 
 struct CatalogueView: View {
     
-//    let urlString: String
+
     
     @State var data: Data?
     
     @StateObject var booksViewModel = BooksCatalogueViewModel()
-//    @State private var searchText = ""
+
     
     
     var body: some View {
         NavigationView{
             List{
+                //show list of books
                 ForEach(booksViewModel.books, id: \.self){ book in
                     NavigationLink(destination: BookDetailView(book_id: book.book_id, book_title: book.book_title, book_author: book.book_author, book_year: book.book_year, book_desc: book.book_desc, book_image: book.book_image, availability: book.availability, borrower: 0)){
                         HStack{
@@ -51,10 +52,10 @@ struct CatalogueView: View {
             }
             .navigationTitle("Books")
             .onAppear{
+                
+                //fetching books from viewmodel
                 booksViewModel.fetchAllBooks()
-//                booksViewModel.fetchFirstBook()
             }
-//            .searchable(text: $searchText)
         }
         
         
@@ -63,13 +64,6 @@ struct CatalogueView: View {
     }
     
     
-//    var searchResult: [String]{
-//        if searchText.isEmpty{
-//            return books
-//        } else {
-//            return books.filter {$0.contains(searchText)}
-//        }
-//    }
 }
 
 #Preview {

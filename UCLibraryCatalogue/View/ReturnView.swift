@@ -24,10 +24,7 @@ struct ReturnView: View {
     var borrowed_book_title: String
     
     let tes = ["tes","tes"]
-//    var borrow_date: String
-//    var return_date: String
-    
-//    @State var h7Now = Calendar.current.date(byAdding: .day, value: 7, to: Date.now)
+
     
     var body: some View {
         NavigationView{
@@ -51,16 +48,7 @@ struct ReturnView: View {
 
                 }
             }
-//            List{
-//                VStack{
-//                    ForEach(tes, id: \.self) { borrower in
-//                        HStack{
-//                            Text(borrower)
-//                        }
-//                    }
-//                    .padding(3)
-//                }
-//            }
+
             .navigationTitle("Return")
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -73,10 +61,11 @@ struct ReturnView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
+                        // update book data (availability) in database
                         bookViewModel.updateBookReturn(book_id: borrowed_book)
                         
+                        // delete borrower in database
                         borrowerViewModel.deleteBorrower(borrowed_book: borrowed_book)
-                        //delete borrower
                         print(borrower_name)
                         print(borrowed_book)
                         dismiss()

@@ -16,6 +16,4 @@ struct BooksCatalogueModel: Hashable, Codable {
     var book_desc: String
     var book_image: String
     var availability: String
-//    var borrow_date: String
-//    var return_date: String
 }

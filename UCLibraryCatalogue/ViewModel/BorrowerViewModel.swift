@@ -17,34 +17,7 @@ class BorrowerViewModel: ObservableObject{
     
     @Published var borrower_id = ""
     
-    
-    
-//    func fetchBorrowerId(borrowername: String){
-//        guard let url = URL(string:"http://localhost/library-php-api/books/readoneborrower.php?borrower_name=\(borrowername)") else {
-//            return
-//        }
-//        
-//        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-//            if let data = data {
-//                do{
-//                    let borrower = try JSONDecoder().decode(BorrowerModel.self, from: data)
-//                    DispatchQueue.main.async {
-//                        // Update the books array or store the single book in a separate property
-//                        // based on your design
-//                        self?.borrowers = [borrower]
-//                    }
-//                }
-//                catch {
-//                    print(error)
-//                }
-//            }
-//            
-//            
-//            
-//        }
-//        task.resume()
-//    }
-    
+    // fetch all borrowers data
     func fetchAllBorrowers() {
         guard let url = URL(string:"http://localhost/library-php-api/books/readoneborrower.php") else {
             return
@@ -55,7 +28,7 @@ class BorrowerViewModel: ObservableObject{
                 return
             }
             
-            // convert to JSON
+            // decode JSON
             do {
                 let borrowers = try JSONDecoder().decode([BorrowerModel].self, from: data)
                 DispatchQueue.main.async {
@@ -71,18 +44,12 @@ class BorrowerViewModel: ObservableObject{
         task.resume()
     }
     
-    
-    
-   
 
-    
+    // create borrower data in borrowview
     func createBorrower(borrowername: String, borrowed_book: String){
         guard let url = URL(string:"http://localhost/library-php-api/books/createborrower.php") else {
             return
         }
-        
-//        let data = try! JSONSerialization.data(withJSONObject: parameters)
-        
         
         let body:[String: AnyHashable] = [
             "borrower_name":"\(borrowername)",
@@ -112,6 +79,7 @@ class BorrowerViewModel: ObservableObject{
         
     }
     
+    //unused
     func updateBorrower(borrower_id: String){
         guard let url = URL(string:"http://localhost/library-php-api/books/createborrower.php?borrower_id=\(borrower_id)") else {
             return
@@ -142,6 +110,7 @@ class BorrowerViewModel: ObservableObject{
         
     }
     
+    //unused
     func updateBorrowerReturned(borrower_id: String){
         guard let url = URL(string:"http://localhost/library-php-api/books/createborrower.php?borrower_id=\(borrower_id)") else {
             return
@@ -172,6 +141,7 @@ class BorrowerViewModel: ObservableObject{
         
     }
     
+    //unused
     func fetchFirstBorrower(borrower_id: Int) {
         guard let url = URL(string: "http://localhost/library-php-api/books/updatereturnedborrower.php?borrower_id=\(borrower_id)") else {
             return
@@ -199,6 +169,7 @@ class BorrowerViewModel: ObservableObject{
         task.resume()
     }
     
+    //unused
     func fetchFirstBorrowerbyName(borrower_name: String) {
         guard let url = URL(string:"http://localhost/library-php-api/books/readoneborrower.php?borrower_name=\(borrower_name)") else {
             return
@@ -225,6 +196,7 @@ class BorrowerViewModel: ObservableObject{
         task.resume()
     }
     
+    //fetch the borrower data from book clicked in the catalougue
     func fetchFirstBorrowerbyBook(borrowed_book: String) {
         guard let url = URL(string:"http://localhost/library-php-api/books/readoneborrowerbybook.php?borrowed_book=\(borrowed_book)") else {
             return
@@ -251,6 +223,7 @@ class BorrowerViewModel: ObservableObject{
         task.resume()
     }
     
+    //delete the borrower when returnin the book, by book_id
     func deleteBorrower(borrowed_book: String) {
         guard let url = URL(string:"http://localhost/library-php-api/books/deleteborrower.php?borrowed_book=\(borrowed_book)") else {
             return

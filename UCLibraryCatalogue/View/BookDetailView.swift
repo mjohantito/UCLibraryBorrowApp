@@ -17,8 +17,6 @@ struct BookDetailView: View {
     var book_image: String
     var availability: String
     var borrower: Int
-//    var borrow_date: String?
-//    var return_date: String?
     
     
     
@@ -27,11 +25,7 @@ struct BookDetailView: View {
     @StateObject var booksViewModel = BooksCatalogueViewModel()
     
     @StateObject var borrowerViewModel = BorrowerViewModel()
-    
-//    var borrowerNamee = ""
-//    var borrowedBookk = ""
-//    var borrowDatee = ""
-//    var returnDatee = ""
+
     
     var body: some View {
         
@@ -71,6 +65,7 @@ struct BookDetailView: View {
                 Button(action: {
                     showingsheet.toggle()
                     
+                    //fetch borrower data by book_id
                     borrowerViewModel.fetchFirstBorrowerbyBook(borrowed_book: book_id)
                     print("book id \(book_id)")
                     
@@ -102,18 +97,13 @@ struct BookDetailView: View {
                         BorrowView(book_id:book_id)
                     }else{
                         
-                        
+                        //save borrower data in variable
                         let borrowerNamee = borrowerViewModel.singleBorrowers?.borrower_name
                         let borrowedBookk = borrowerViewModel.singleBorrowers?.borrowed_book
                         let borrowDatee = borrowerViewModel.singleBorrowers?.borrow_date
                         let returnDatee = borrowerViewModel.singleBorrowers?.return_date
                         
-//                        print(borrowerNamee ?? "gaada borrower")
-//                        print(borrowedBookk ?? "gaada book")
-//                        print(borrowDatee ?? "ga dapet daet")
-//                        print(returnDatee ?? "ga dapet return date")
-                        
-                        
+                        //send borrower data to next view (return view)
                         ReturnView(borrower_name: borrowerNamee ?? "gadapet name", borrowed_book: borrowedBookk ?? "gadapet book", borrow_date: borrowDatee ?? "ga dapet date", return_date: returnDatee ?? "ga dapet return date",borrowed_book_title: book_title )
                         
                     }

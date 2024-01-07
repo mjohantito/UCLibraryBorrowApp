@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+
+//to show image in catalogue
 struct URLImage: View {
     let urlString: String
     
@@ -45,6 +47,7 @@ struct URLImage: View {
     }
 }
 
+//to show image in book details
 struct URLImageBackground: View {
     let urlString: String
     
