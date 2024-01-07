@@ -21,6 +21,8 @@ struct ReturnView: View {
     var borrow_date: String
     var return_date: String
     
+    var borrowed_book_title: String
+    
     let tes = ["tes","tes"]
 //    var borrow_date: String
 //    var return_date: String
@@ -31,10 +33,23 @@ struct ReturnView: View {
         NavigationView{
             
             VStack{
-                Text(borrower_name)
-                Text(borrowed_book)
-                Text("Borrow Date : \(borrow_date)")
-                Text("Return Date: \(return_date)")
+                Form{
+                    Section{
+                        Text("Borrower Name : \(borrower_name)")
+                        Text("Borrowed Book : \(borrowed_book_title)")
+                        
+                    } header: {
+                        Text("Borrower Data")
+                    }
+                    Section{
+                        Text("Borrow Date : \(borrow_date)")
+                        Text("Return Date : \(return_date)")
+                    } header: {
+                        Text("Date Data")
+                    }
+                    
+
+                }
             }
 //            List{
 //                VStack{
@@ -66,7 +81,7 @@ struct ReturnView: View {
                         print(borrowed_book)
                         dismiss()
                     }, label: {
-                        Text("Save")
+                        Text("Return")
                     })
                     
                 }
@@ -78,5 +93,5 @@ struct ReturnView: View {
 }
 
 #Preview {
-    ReturnView(borrower_name: "Tes", borrowed_book: "10", borrow_date: "borrow date", return_date: "return date")
+    ReturnView(borrower_name: "Tes", borrowed_book: "10", borrow_date: "borrow date", return_date: "return date", borrowed_book_title: "Title")
 }

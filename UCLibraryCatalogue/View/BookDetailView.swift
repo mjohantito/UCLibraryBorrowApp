@@ -114,7 +114,7 @@ struct BookDetailView: View {
 //                        print(returnDatee ?? "ga dapet return date")
                         
                         
-                        ReturnView(borrower_name: borrowerNamee ?? "gadapet name", borrowed_book: borrowedBookk ?? "gadapet book", borrow_date: borrowDatee ?? "ga dapet date", return_date: returnDatee ?? "ga dapet return date")
+                        ReturnView(borrower_name: borrowerNamee ?? "gadapet name", borrowed_book: borrowedBookk ?? "gadapet book", borrow_date: borrowDatee ?? "ga dapet date", return_date: returnDatee ?? "ga dapet return date",borrowed_book_title: book_title )
                         
                     }
                     
